@@ -111,3 +111,9 @@ void MainWindow::readModem()
 {
     qDebug() << modemCommands->readAll();
 }
+
+void MainWindow::on_pushButton_sms_clicked()
+{
+    QByteArray cmdATD = "ATH" + '\r';
+    modemCommands->write(cmdATD);
+}
