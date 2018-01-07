@@ -99,5 +99,9 @@ void MainWindow::on_pushButton_clear_clicked()
 
 void MainWindow::on_pushButton_call_clicked()
 {
-    modemCommands->write("ATD05555641540;");
+    QByteArray cmdATD = "ATD" + phoneNumber.toUtf8() + ";";
+    modemCommands->write(cmdATD);
+    modemCommands->waitForBytesWritten(1000);
+    modemCommands->waitForReadyRead(1000);
+    qDebug() << modemCommands->readAll();
 }
