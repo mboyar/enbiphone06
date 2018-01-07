@@ -101,7 +101,7 @@ void MainWindow::on_pushButton_clear_clicked()
 
 void MainWindow::on_pushButton_call_clicked()
 {
-    QByteArray cmdATD = "ATD" + phoneNumber.toUtf8() + ";";
+    QByteArray cmdATD = "ATD" + phoneNumber.toUtf8() + ";" + '\n\r';
     modemCommands->write(cmdATD);
 
     qDebug() << "phoneNumber: " << phoneNumber;
