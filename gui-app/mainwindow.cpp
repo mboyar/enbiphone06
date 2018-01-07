@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     modemCommands->setBaudRate(QSerialPort::Baud115200);
     modemCommands->setPortName("/dev/ttyS0");
     modemCommands->open(QIODevice::ReadWrite);
+
+    connect(modemCommands, SIGNAL(readyRead()), this, SLOT(readModem()));
 }
 
 MainWindow::~MainWindow()
@@ -101,7 +103,11 @@ void MainWindow::on_pushButton_call_clicked()
 {
     QByteArray cmdATD = "ATD" + phoneNumber.toUtf8() + ";";
     modemCommands->write(cmdATD);
-    modemCommands->waitForBytesWritten(1000);
-    modemCommands->waitForReadyRead(1000);
+
+    qDebug() << "phoneNumber: " << phoneNumber;
+}
+
+void MainWindow::readModem()
+{
     qDebug() << modemCommands->readAll();
 }
