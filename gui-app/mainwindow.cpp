@@ -9,11 +9,13 @@ MainWindow::MainWindow(QWidget *parent) :
     modemCommands = new QSerialPort();
     modemCommands->setBaudRate(QSerialPort::Baud115200);
     modemCommands->setPortName("/dev/ttyS0");
+    modemCommands->open(QIODevice::ReadWrite);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    modemCommands->close();
 }
 
 
