@@ -47,6 +47,8 @@ private slots:
 
     void on_pushButton_call_clicked();
 
+    void readModem();
+
 private:
     Ui::MainWindow *ui;
     QString phoneNumber;
