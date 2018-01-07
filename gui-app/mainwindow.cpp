@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     modemCommands = new QSerialPort();
     modemCommands->setBaudRate(QSerialPort::Baud115200);
+    modemCommands->setPortName("/dev/ttyS0");
 }
 
 MainWindow::~MainWindow()
